@@ -1,6 +1,6 @@
-# Custom CHMARL/Tomorrow distribution
+# Custom CHMARL Goose distribution
 
-This fork is a CHMARL/Tomorrow-specific distribution of Goose.
+This fork is a CHMARL-specific distribution of Goose.
 
 It keeps the upstream Goose agent platform but adds project-specific defaults, recipes, documentation, and MCP tools for EcoFair-CH-MARL research workflows.
 
@@ -14,7 +14,7 @@ The customized distribution should help with:
 - fairness and emissions result analysis
 - CHMARL repository maintenance
 - website/demo material for `chmarl.com`
-- long-term Tomorrow-facing research planning
+- long-term CHMARL research planning
 
 ## Recommended local workspace
 
@@ -27,7 +27,7 @@ workspace/
 
 ## Default assistant identity
 
-This fork should identify itself as a Goose-based CHMARL/Tomorrow assistant. It should still be able to help with general coding and automation, but its default project context is:
+This fork should identify itself as a Goose-based CHMARL assistant. It should still be able to help with general coding and automation, but its default project context is:
 
 - constrained hierarchical multi-agent reinforcement learning
 - maritime logistics
@@ -67,13 +67,13 @@ Start with:
 - `recipes/chmarl-paper-assistant.yaml`
 - `recipes/chmarl-experiment-analyst.yaml`
 - `recipes/chmarl-repo-maintainer.yaml`
-- `recipes/chmarl-tomorrow-planner.yaml`
+- `recipes/chmarl-project-planner.yaml`
 
 ## Desktop branding targets
 
 A future PR can rebrand the desktop application more deeply:
 
-- app name: `CHMARL Tomorrow Goose`
+- app name: `CHMARL Goose`
 - icon assets under `ui/desktop/src/images/`
 - application metadata in `ui/desktop/package.json`
 - build/package metadata in `ui/desktop/forge.config.ts`
