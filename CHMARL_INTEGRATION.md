@@ -1,6 +1,6 @@
-# CHMARL/Tomorrow integration strategy
+# CHMARL integration strategy
 
-This repository is now treated as a CHMARL/Tomorrow fork of Goose, not merely a small upstream patch.
+This repository is a CHMARL-focused fork of Goose.
 
 The fork should evolve into an agentic research workbench around EcoFair-CH-MARL: a place where we can add project-specific documentation, recipes, MCP tools, analysis scripts, assistant modes, and eventually custom desktop branding.
 
@@ -19,7 +19,7 @@ alqithami/EcoFairCHAMRL
   emission-budget logic, fairness metrics, baselines, experiments, outputs.
 
 alqithami/goose
-  CHMARL/Tomorrow assistant distribution: project-specific Goose recipes,
+  CHMARL Goose assistant distribution: project-specific Goose recipes,
   documentation, MCP extensions, experiment analysis, repo-maintenance helpers,
   and future custom UI/desktop branding.
 
@@ -109,22 +109,11 @@ Suggested priorities:
 7. Add result aggregation scripts.
 8. Add a paper-to-code traceability matrix.
 
-### 5. Tomorrow planner
-
-The fork should also serve as a planning layer for future Tomorrow-facing work:
-
-- broader sustainable logistics beyond maritime
-- energy-grid experiments
-- policy-facing dashboards
-- explainable fairness/emissions trade-off summaries
-- public demo narratives for `chmarl.com`
-- integration with data portals and experiment artifacts
-
 ## Custom distribution direction
 
 Because this is our fork, we can customize it beyond minimal integration:
 
-- rewrite the README for CHMARL/Tomorrow
+- rewrite the README for CHMARL
 - add CHMARL docs under `docs/`
 - add recipes under `recipes/`
 - add MCP tools under `extensions/`
@@ -149,15 +138,15 @@ CHMARL_INTEGRATION.md
 CUSTOM_CHMARL_DISTRIBUTION.md
 
 docs/
-  CHMARL_TOMORROW_ROADMAP.md
-  TOMORROW_WORKFLOWS.md
+  CHMARL_ROADMAP.md
+  CHMARL_WORKFLOWS.md
   PAPER_TO_CODE_TRACEABILITY.md
 
 recipes/
   chmarl-paper-assistant.yaml
   chmarl-experiment-analyst.yaml
   chmarl-repo-maintainer.yaml
-  chmarl-tomorrow-planner.yaml
+  chmarl-project-planner.yaml
 
 extensions/
   chmarl-results-mcp/
