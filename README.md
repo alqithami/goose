@@ -1,14 +1,14 @@
-# CHMARL Tomorrow Goose
+# CHMARL Goose
 
 _An agentic research assistant distribution for EcoFair-CH-MARL, maritime logistics, emission-budgeted reinforcement learning, and fairness-aware multi-agent experimentation._
 
-This repository is a project-specific fork of Goose. It keeps the Goose desktop app, CLI, API, provider ecosystem, and MCP extension architecture, but reorients the fork toward the CHMARL/Tomorrow research workflow.
+This repository is a project-specific fork of Goose. It keeps the Goose desktop app, CLI, API, provider ecosystem, and MCP extension architecture, but reorients the fork toward CHMARL research workflows.
 
-The goal is to make this fork useful for our project rather than merely mirror upstream Goose.
+The goal is to make this fork useful for the CHMARL project rather than merely mirror upstream Goose.
 
 ## Project context
 
-CHMARL Tomorrow Goose is designed to support the broader CHMARL ecosystem:
+CHMARL Goose is designed to support the broader CHMARL ecosystem:
 
 - Project website: https://chmarl.com
 - Paper: https://arxiv.org/abs/2603.14625
@@ -30,7 +30,7 @@ Use this fork as a local AI research workbench for:
 - preparing reproducibility notes
 - maintaining the CHMARL codebase
 - drafting website/demo copy for `chmarl.com`
-- exploring future Tomorrow-facing extensions of CHMARL
+- planning future CHMARL research extensions
 
 ## Repository additions
 
@@ -41,21 +41,27 @@ CHMARL_INTEGRATION.md
 CUSTOM_CHMARL_DISTRIBUTION.md
 
 docs/
-  CHMARL_TOMORROW_ROADMAP.md
-  TOMORROW_WORKFLOWS.md
+  CHMARL_ROADMAP.md
+  CHMARL_WORKFLOWS.md
   PAPER_TO_CODE_TRACEABILITY.md
 
 recipes/
   chmarl-paper-assistant.yaml
   chmarl-experiment-analyst.yaml
   chmarl-repo-maintainer.yaml
-  chmarl-tomorrow-planner.yaml
+  chmarl-project-planner.yaml
 
 extensions/
   chmarl-results-mcp/
     README.md
     requirements.txt
     chmarl_results_mcp.py
+
+scripts/
+  chmarl/
+    README.md
+    run_ablation_matrix.sh
+    summarize_results.py
 ```
 
 ## Recommended project architecture
@@ -66,7 +72,7 @@ alqithami/EcoFairCHAMRL
   fairness metrics, emission-budget logic, and experiment outputs.
 
 alqithami/goose
-  CHMARL Tomorrow assistant distribution: recipes, MCP tools,
+  CHMARL Goose assistant distribution: recipes, MCP tools,
   experiment analysis, code review, documentation, and workflow automation.
 
 chmarl.com
@@ -137,44 +143,19 @@ The recipes are intended to create repeatable assistant modes.
 
 ### `chmarl-paper-assistant.yaml`
 
-Use this for:
-
-- paper explanation
-- related-work synthesis
-- equation walkthroughs
-- paper-to-code comparison
-- reviewer-style critique
-- reproducibility checks
+Use this for paper explanation, related-work synthesis, equation walkthroughs, paper-to-code comparison, reviewer-style critique, and reproducibility checks.
 
 ### `chmarl-experiment-analyst.yaml`
 
-Use this for:
-
-- reading CSV outputs
-- summarizing returns and fairness metrics
-- identifying trend changes
-- comparing ablation settings
-- preparing result tables and figure captions
+Use this for reading CSV outputs, summarizing returns and fairness metrics, comparing ablation settings, and preparing result tables and figure captions.
 
 ### `chmarl-repo-maintainer.yaml`
 
-Use this for:
+Use this for refactoring `EcoFairCHMARL.py`, adding tests, improving packaging, creating reproducible experiment scripts, and separating implemented algorithms from placeholders.
 
-- refactoring `EcoFairCHAMRL.py`
-- adding tests
-- improving packaging
-- creating reproducible experiment scripts
-- separating implemented algorithms from placeholders
+### `chmarl-project-planner.yaml`
 
-### `chmarl-tomorrow-planner.yaml`
-
-Use this for:
-
-- roadmap planning
-- website/demo ideas
-- next-paper directions
-- future extensions beyond maritime logistics
-- deployment-oriented research planning
+Use this for roadmap planning, website/demo ideas, next-paper directions, future extensions beyond maritime logistics, and deployment-oriented research planning.
 
 ## Fork strategy
 
@@ -199,9 +180,9 @@ We should still keep a clear boundary between:
 
 1. Build a richer CHMARL MCP server that can read experiment configs, CSV files, generated plots, and paper metadata.
 2. Add result comparison tools for baseline versus fairness/emission-cap runs.
-3. Add a traceability matrix from the paper claims to implementation files and tests.
+3. Add a traceability matrix from paper claims to implementation files and tests.
 4. Add a custom Goose distribution profile for CHMARL providers, recipes, and extensions.
-5. Rebrand the desktop app name, icons, default prompts, and bundled extensions for a CHMARL/Tomorrow distribution.
+5. Rebrand desktop icons, default prompts, and bundled extensions for a CHMARL Goose distribution.
 6. Add documentation workflows for publishing summaries to `chmarl.com`.
 
 ## Upstream attribution
