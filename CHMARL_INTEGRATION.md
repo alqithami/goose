@@ -1,48 +1,49 @@
-# CHMARL integration for Goose
+# CHMARL/Tomorrow integration strategy
 
-This repository can be used as a CHMARL research and workflow assistant around the core EcoFair-CH-MARL implementation.
+This repository is now treated as a CHMARL/Tomorrow fork of Goose, not merely a small upstream patch.
 
-The goal is not to move the MARL simulator into Goose. Instead, Goose should act as an agentic layer for research support, experiment planning, result analysis, repository maintenance, and public-facing documentation for the CHMARL project.
+The fork should evolve into an agentic research workbench around EcoFair-CH-MARL: a place where we can add project-specific documentation, recipes, MCP tools, analysis scripts, assistant modes, and eventually custom desktop branding.
 
 ## Related project assets
 
 - CHMARL project site: https://chmarl.com
 - Paper: https://arxiv.org/abs/2603.14625
 - Core implementation repository: https://github.com/alqithami/EcoFairCHAMRL
+- Upstream Goose: https://github.com/aaif-goose/goose
 
-## Recommended architecture
+## Architecture
 
 ```text
 alqithami/EcoFairCHAMRL
-  Core simulator, training loop, baselines, fairness metrics, emissions constraints,
-  experiment outputs, and reproducibility scripts.
+  Research code: constrained hierarchical MARL environment, training loop,
+  emission-budget logic, fairness metrics, baselines, experiments, outputs.
 
 alqithami/goose
-  Research assistant, CHMARL-specific recipes, experiment analysis helpers,
-  MCP tooling, and workflow automation.
+  CHMARL/Tomorrow assistant distribution: project-specific Goose recipes,
+  documentation, MCP extensions, experiment analysis, repo-maintenance helpers,
+  and future custom UI/desktop branding.
 
 chmarl.com
-  Public project website, paper/code gateway, demos, figures, and results narrative.
+  Public communication layer: paper gateway, demos, figures, tutorials,
+  implementation notes, and result summaries.
 ```
 
-## What Goose should do for CHMARL
+## What this fork should become
 
-### 1. Paper-to-code traceability
+### 1. CHMARL paper assistant
 
-Use Goose to inspect whether claims in the paper are represented in code:
+The fork should help explain and validate the EcoFair-CH-MARL paper:
 
-- constrained hierarchical MARL structure
-- high-level routing decisions
-- low-level vessel control decisions
-- real-time emission budget logic
-- fairness-aware reward transformation
-- Gini and max-min fairness metrics
-- scalability settings such as ports and vessels
-- ablation and baseline experiments
+- summarize sections and equations
+- check claims against code
+- identify implementation gaps
+- prepare reviewer responses
+- generate related-work notes
+- maintain a paper-to-code traceability table
 
-### 2. Experiment planning
+### 2. Experiment planner
 
-Use Goose recipes to generate and run repeatable experiment matrices, for example:
+The fork should generate and maintain reproducible experiment matrices:
 
 ```bash
 python EcoFairCHMARL.py --episodes 2000 --outdir results/baseline
@@ -53,28 +54,33 @@ python EcoFairCHMARL.py --algo SOTO --episodes 2000 --outdir results/soto
 python EcoFairCHMARL.py --algo FEN --episodes 2000 --outdir results/fen
 ```
 
-### 3. Result analysis
+The long-term target is a Goose recipe that can ask for a study design and produce:
 
-The EcoFairCHAMRL repository writes CSV files such as:
+- command matrix
+- output directory naming convention
+- seed plan
+- expected CSV files
+- comparison table template
+- result interpretation checklist
+
+### 3. Result analyst
+
+The fork should analyze outputs from `EcoFairCHAMRL`, including:
 
 - `results_<algo>.csv`
 - `fairness_metrics_<algo>.csv`
 - `training_fairness_metrics_<algo>.csv`
+- generated figures and convergence plots
 
-The starter MCP extension in `extensions/chmarl-results-mcp/` is intended to let Goose inspect those files and summarize:
+The MCP extension in `extensions/chmarl-results-mcp/` is the first step. It should grow from simple descriptive statistics into a CHMARL-aware result analyst that understands returns, Gini, max-min ratio, fuel/emissions proxies, ablations, and seed variance.
 
-- average return
-- Gini coefficient
-- max-min fairness ratio
-- training trend by episode
-- trade-offs between emissions, efficiency, and fairness
+### 4. Repository maintainer
 
-### 4. Repository maintenance
-
-Goose can help refactor the core CHMARL implementation into a cleaner research artifact:
+The fork should help improve the CHMARL codebase itself. Recommended target structure for the core implementation:
 
 ```text
 chmarl/
+  __init__.py
   env.py
   metrics.py
   baselines.py
@@ -86,60 +92,82 @@ tests/
   test_metrics.py
   test_env_step.py
   test_cli.py
+
+docs/
+  paper_to_code_traceability.md
+  experiments.md
 ```
 
-Suggested maintenance priorities:
+Suggested priorities:
 
 1. Add `requirements.txt` or `pyproject.toml`.
 2. Add deterministic seed handling.
-3. Add tests for metrics and environment transitions.
-4. Separate implemented baselines from placeholders or fallback behavior.
-5. Add a paper-to-code traceability matrix.
+3. Add tests for fairness metrics.
+4. Add environment smoke tests for reset/step.
+5. Add CLI smoke tests.
+6. Separate implemented baselines from placeholders or fallback behavior.
+7. Add result aggregation scripts.
+8. Add a paper-to-code traceability matrix.
 
-## Using the recipes
+### 5. Tomorrow planner
 
-The `recipes/` directory contains CHMARL-specific Goose recipe drafts:
+The fork should also serve as a planning layer for future Tomorrow-facing work:
 
-- `recipes/chmarl-paper-assistant.yaml`
-- `recipes/chmarl-experiment-analyst.yaml`
-- `recipes/chmarl-repo-maintainer.yaml`
+- broader sustainable logistics beyond maritime
+- energy-grid experiments
+- policy-facing dashboards
+- explainable fairness/emissions trade-off summaries
+- public demo narratives for `chmarl.com`
+- integration with data portals and experiment artifacts
 
-Use them as starting points for Goose sessions focused on paper review, experiment analysis, and repository improvement.
+## Custom distribution direction
 
-## Using the MCP extension scaffold
+Because this is our fork, we can customize it beyond minimal integration:
 
-The starter extension is intentionally lightweight and external to Goose core:
+- rewrite the README for CHMARL/Tomorrow
+- add CHMARL docs under `docs/`
+- add recipes under `recipes/`
+- add MCP tools under `extensions/`
+- add CHMARL-specific scripts under `scripts/chmarl/`
+- eventually rebrand the desktop app and default prompts
+- eventually ship a preconfigured distribution with CHMARL extensions enabled
 
-```bash
-cd extensions/chmarl-results-mcp
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python chmarl_results_mcp.py --results-dir /path/to/EcoFairCHAMRL/results
+## Engineering guardrails
+
+We can modify the fork freely, but changes should still be reviewable:
+
+- keep generated experiment outputs out of git unless intentionally published
+- keep upstream license and attribution
+- avoid claiming an algorithm is fully implemented when it is a wrapper, placeholder, or fallback
+- distinguish direct emissions data from fuel/emission proxies
+- prefer small, named tools and recipes over one large opaque assistant mode
+
+## Current files added by this fork
+
+```text
+CHMARL_INTEGRATION.md
+CUSTOM_CHMARL_DISTRIBUTION.md
+
+docs/
+  CHMARL_TOMORROW_ROADMAP.md
+  TOMORROW_WORKFLOWS.md
+  PAPER_TO_CODE_TRACEABILITY.md
+
+recipes/
+  chmarl-paper-assistant.yaml
+  chmarl-experiment-analyst.yaml
+  chmarl-repo-maintainer.yaml
+  chmarl-tomorrow-planner.yaml
+
+extensions/
+  chmarl-results-mcp/
+    README.md
+    requirements.txt
+    chmarl_results_mcp.py
+
+scripts/
+  chmarl/
+    README.md
+    run_ablation_matrix.sh
+    summarize_results.py
 ```
-
-Then register it as a Goose stdio extension using a configuration similar to:
-
-```yaml
-extensions:
-  - type: stdio
-    name: chmarl-results
-    cmd: python
-    args:
-      - /absolute/path/to/extensions/chmarl-results-mcp/chmarl_results_mcp.py
-      - --results-dir
-      - /absolute/path/to/EcoFairCHAMRL/results
-    description: Analyze EcoFair-CH-MARL experiment CSV outputs.
-```
-
-## Scope boundary
-
-Keep CHMARL algorithmic code in `EcoFairCHAMRL`. Keep Goose changes focused on:
-
-- recipes
-- documentation
-- MCP integration
-- workflow automation
-- research assistant behavior
-
-This keeps the Goose fork easy to maintain while making it directly useful for the CHMARL project.
