@@ -17,6 +17,16 @@ CHMARL Goose is designed to support the broader CHMARL ecosystem:
 
 The CHMARL simulator and training logic live in `EcoFairCHAMRL`. This fork is the assistant/workflow layer around that project.
 
+## Current status
+
+Start here for the current handoff and finalization notes:
+
+```text
+CHMARL_STATUS.md
+```
+
+That document explains what has been added, which MCP server is preferred, what remains future work, and what belongs in the EcoFairCHAMRL repository instead of this Goose fork.
+
 ## What this fork is for
 
 Use this fork as a local AI research workbench for:
@@ -39,10 +49,12 @@ This fork adds CHMARL-specific assets on top of Goose:
 ```text
 CHMARL_INTEGRATION.md
 CUSTOM_CHMARL_DISTRIBUTION.md
+CHMARL_STATUS.md
 
 docs/
   CHMARL_ROADMAP.md
   CHMARL_WORKFLOWS.md
+  NEXT_STEPS_ECOFAIR_CHMARL.md
   PAPER_TO_CODE_TRACEABILITY.md
 
 recipes/
@@ -52,10 +64,8 @@ recipes/
   chmarl-project-planner.yaml
 
 extensions/
-  chmarl-results-mcp/
-    README.md
-    requirements.txt
-    chmarl_results_mcp.py
+  chmarl-mcp/                  # preferred CHMARL MCP server
+  chmarl-results-mcp/          # legacy/simple scaffold
 
 scripts/
   chmarl/
@@ -63,6 +73,24 @@ scripts/
     run_ablation_matrix.sh
     summarize_results.py
 ```
+
+## Preferred CHMARL MCP server
+
+Use this for new work:
+
+```text
+extensions/chmarl-mcp/
+```
+
+It supports repository inspection, experiment discovery, CSV result summarization, metric comparison, run ranking, missing-output checks, ablation planning, markdown report generation, and paper-to-code traceability stubs.
+
+The earlier scaffold remains here as a minimal reference:
+
+```text
+extensions/chmarl-results-mcp/
+```
+
+Do not use the older results-only scaffold as the main integration path unless you intentionally want the simplest possible example.
 
 ## Recommended project architecture
 
@@ -125,17 +153,34 @@ python EcoFairCHMARL.py --algo FEN --episodes 2000 --outdir results/fen
 
 ### 4. Connect Goose to CHMARL results
 
-Use the starter MCP extension:
+Use the preferred MCP server:
 
 ```bash
-cd goose/extensions/chmarl-results-mcp
+cd goose/extensions/chmarl-mcp
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python chmarl_results_mcp.py --results-dir ../../EcoFairCHAMRL/results
+python chmarl_mcp.py \
+  --repo-dir /absolute/path/to/EcoFairCHAMRL \
+  --results-dir /absolute/path/to/EcoFairCHAMRL/results \
+  --report-dir /absolute/path/to/EcoFairCHAMRL/results/reports
 ```
 
-Then register the extension in Goose as a stdio MCP extension.
+Then register the extension in Goose as a stdio MCP extension. See:
+
+```text
+extensions/chmarl-mcp/example_goose_extension.yaml
+```
+
+### 5. Validate the CHMARL MCP server
+
+```bash
+cd extensions/chmarl-mcp
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt -r dev-requirements.txt
+pytest
+```
 
 ## CHMARL recipes
 
@@ -176,14 +221,19 @@ We should still keep a clear boundary between:
 - **CHMARL assistant layer**: project-specific recipes, docs, MCP tools, and workflows.
 - **CHMARL algorithm code**: the simulator and training code in `EcoFairCHAMRL`.
 
-## Next engineering targets
+## Next engineering target
 
-1. Build a richer CHMARL MCP server that can read experiment configs, CSV files, generated plots, and paper metadata.
-2. Add result comparison tools for baseline versus fairness/emission-cap runs.
-3. Add a traceability matrix from paper claims to implementation files and tests.
-4. Add a custom Goose distribution profile for CHMARL providers, recipes, and extensions.
-5. Rebrand desktop icons, default prompts, and bundled extensions for a CHMARL Goose distribution.
-6. Add documentation workflows for publishing summaries to `chmarl.com`.
+The next major engineering work should move to the core CHMARL repository:
+
+```text
+https://github.com/alqithami/EcoFairCHAMRL
+```
+
+See:
+
+```text
+docs/NEXT_STEPS_ECOFAIR_CHMARL.md
+```
 
 ## Upstream attribution
 
