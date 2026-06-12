@@ -12,7 +12,14 @@ The current handoff/status document is:
 CHMARL_STATUS.md
 ```
 
-It explains what has been added, which MCP server is preferred, how to validate it, and what should move next to the core `EcoFairCHAMRL` repository.
+Repository update policy and operating guidance live here:
+
+```text
+FORK_POLICY.md
+docs/REPOSITORY_OPERATIONS.md
+```
+
+These documents define `alqithami/goose` as the CHMARL Goose source of truth and explain how this fork should be updated.
 
 ## Project context
 
@@ -52,6 +59,7 @@ pytest
 ## Repository additions
 
 ```text
+FORK_POLICY.md
 CHMARL_INTEGRATION.md
 CUSTOM_CHMARL_DISTRIBUTION.md
 CHMARL_STATUS.md
@@ -61,6 +69,7 @@ docs/
   CHMARL_WORKFLOWS.md
   NEXT_STEPS_ECOFAIR_CHMARL.md
   PAPER_TO_CODE_TRACEABILITY.md
+  REPOSITORY_OPERATIONS.md
 
 recipes/
   chmarl-paper-assistant.yaml
