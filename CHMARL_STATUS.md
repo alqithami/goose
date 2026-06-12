@@ -13,11 +13,29 @@ This fork is the Goose-based assistant and workflow layer for CHMARL. The core C
 - Upstream Goose: https://github.com/aaif-goose/goose
 - Paper: https://arxiv.org/abs/2603.14625
 
+## Fork update policy
+
+The working CHMARL Goose repository is:
+
+```text
+alqithami/goose
+```
+
+Policy and operations docs:
+
+```text
+FORK_POLICY.md
+docs/REPOSITORY_OPERATIONS.md
+```
+
+Use this fork for CHMARL Goose updates. Use `alqithami/EcoFairCHAMRL` for core algorithm work.
+
 ## Added assets
 
 Documentation:
 
 ```text
+FORK_POLICY.md
 CHMARL_INTEGRATION.md
 CUSTOM_CHMARL_DISTRIBUTION.md
 CHMARL_STATUS.md
@@ -25,6 +43,7 @@ docs/CHMARL_ROADMAP.md
 docs/CHMARL_WORKFLOWS.md
 docs/PAPER_TO_CODE_TRACEABILITY.md
 docs/NEXT_STEPS_ECOFAIR_CHMARL.md
+docs/REPOSITORY_OPERATIONS.md
 ```
 
 Recipes:
