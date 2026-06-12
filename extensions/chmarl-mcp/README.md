@@ -35,6 +35,12 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+For development and tests:
+
+```bash
+pip install -r dev-requirements.txt
+```
+
 ## Run
 
 ```bash
@@ -44,7 +50,35 @@ python chmarl_mcp.py \
   --report-dir /absolute/path/to/EcoFairCHAMRL/results/reports
 ```
 
+## Test
+
+This directory includes small sample CHMARL result fixtures under:
+
+```text
+examples/sample_results/
+```
+
+Run tests locally with:
+
+```bash
+cd extensions/chmarl-mcp
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt -r dev-requirements.txt
+pytest
+```
+
+The tests exercise repository inspection, experiment discovery, CSV schema inspection, metric summaries, experiment comparisons, ranking, missing-output detection, ablation planning, traceability stubs, and markdown report generation.
+
 ## Example Goose extension configuration
+
+An example configuration is available at:
+
+```text
+example_goose_extension.yaml
+```
+
+Equivalent inline configuration:
 
 ```yaml
 extensions:
@@ -116,8 +150,12 @@ Writes a markdown summary report to the configured report directory.
 
 Returns a starter traceability matrix connecting CHMARL paper claims to implementation checks.
 
+## Relationship to `chmarl-results-mcp`
+
+`extensions/chmarl-results-mcp/` is the earlier lightweight scaffold. It can remain as a simple example, but this `extensions/chmarl-mcp/` server is the preferred CHMARL integration path going forward.
+
 ## Notes
 
 - If a CSV file does not contain direct emissions columns, Goose should describe fuel as a proxy rather than direct emissions measurement.
 - QMIX and MAPPO should not be reported as implemented unless the CHMARL repository contains verified implementations and generated outputs.
-- This server is intended to complement the smaller `extensions/chmarl-results-mcp/` scaffold. The new `extensions/chmarl-mcp/` server is the preferred path going forward.
+- The MCP server is designed for analysis and reporting first; keep execution/training in the EcoFairCHAMRL repository or explicit scripts.
