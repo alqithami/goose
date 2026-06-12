@@ -83,3 +83,20 @@ result
 # Goose self-test artifacts
 gooseselftest/
 .tasks/
+
+# Python local development
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# CHMARL local workspaces and generated outputs
+/EcoFairCHAMRL/
+/results/
+/reports/
+/chmarl_results_summary.csv
+*.csv.tmp
+*.tmp
