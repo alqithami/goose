@@ -17,9 +17,10 @@ Repository update policy and operating guidance live here:
 ```text
 FORK_POLICY.md
 docs/REPOSITORY_OPERATIONS.md
+docs/ECOFAIR_CHMARL_EXTERNAL_INTEGRATION.md
 ```
 
-These documents define `alqithami/goose` as the CHMARL Goose source of truth and explain how this fork should be updated.
+These documents define `alqithami/goose` as the CHMARL Goose source of truth and define EcoFairCHMARL as an external/read-only project reference unless explicitly instructed otherwise.
 
 ## Project context
 
@@ -28,7 +29,7 @@ These documents define `alqithami/goose` as the CHMARL Goose source of truth and
 - Core CHMARL implementation: https://github.com/alqithami/EcoFairCHAMRL
 - Upstream Goose project: https://github.com/aaif-goose/goose
 
-The CHMARL simulator and training logic live in `EcoFairCHAMRL`. This fork is the assistant/workflow layer around that project.
+The CHMARL simulator and training logic live in `EcoFairCHAMRL`. This fork is the assistant/workflow layer around that project. Goose should integrate with EcoFairCHMARL by reading local files, results, and metadata; it should not modify EcoFairCHMARL unless explicitly requested.
 
 ## Preferred MCP server
 
@@ -67,6 +68,7 @@ CHMARL_STATUS.md
 docs/
   CHMARL_ROADMAP.md
   CHMARL_WORKFLOWS.md
+  ECOFAIR_CHMARL_EXTERNAL_INTEGRATION.md
   NEXT_STEPS_ECOFAIR_CHMARL.md
   PAPER_TO_CODE_TRACEABILITY.md
   REPOSITORY_OPERATIONS.md
@@ -89,7 +91,7 @@ scripts/
 
 ```text
 alqithami/EcoFairCHAMRL
-  Core constrained hierarchical MARL simulator, training scripts,
+  External CHMARL project reference: core simulator, training scripts,
   fairness metrics, emission-budget logic, and experiment outputs.
 
 alqithami/goose
@@ -114,7 +116,7 @@ pnpm install
 pnpm run start
 ```
 
-Clone the CHMARL implementation next to this fork:
+Clone the CHMARL implementation next to this fork as a local external project reference:
 
 ```bash
 cd ..
@@ -133,22 +135,18 @@ workspace/
 
 - `chmarl-paper-assistant.yaml`: paper explanation, equations, paper-to-code comparison, reproducibility checks.
 - `chmarl-experiment-analyst.yaml`: CSV summaries, ablation comparisons, result tables, figure captions.
-- `chmarl-repo-maintainer.yaml`: refactoring, packaging, tests, algorithm/fallback clarity.
+- `chmarl-repo-maintainer.yaml`: repository review and proposed improvements, without modifying EcoFairCHMARL unless explicitly requested.
 - `chmarl-project-planner.yaml`: roadmap, demo ideas, next-paper directions, and project planning.
 
-## Next engineering target
+## Next engineering target in this fork
 
-The next major engineering work should move to:
+Continue improving the Goose integration layer:
 
-```text
-https://github.com/alqithami/EcoFairCHAMRL
-```
-
-See:
-
-```text
-docs/NEXT_STEPS_ECOFAIR_CHMARL.md
-```
+- richer CHMARL MCP reports
+- result dashboards or generated markdown summaries
+- recipes for paper-to-code review
+- website/demo text generation for `chmarl.com`
+- custom Goose desktop branding
 
 ## Upstream attribution
 
