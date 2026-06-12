@@ -6,7 +6,7 @@ This repository is the working CHMARL Goose fork:
 alqithami/goose
 ```
 
-All CHMARL-specific work belongs in this fork.
+All CHMARL-specific Goose integration work belongs in this fork.
 
 ## Repository roles
 
@@ -15,20 +15,34 @@ alqithami/goose
   CHMARL assistant distribution, recipes, MCP servers, helper scripts, docs, and project-specific branding.
 
 alqithami/EcoFairCHAMRL
-  MARL environment, training loops, metrics, tests, baselines, and generated experiment outputs.
+  External CHMARL project reference: MARL environment, training loops, metrics, baselines, and generated experiment outputs.
+```
+
+## External project boundary
+
+From the perspective of this Goose fork, `alqithami/EcoFairCHAMRL` is read-only unless the user explicitly asks to modify that repository.
+
+Goose integration work should inspect, summarize, and report on EcoFairCHAMRL artifacts without editing that repository.
+
+See:
+
+```text
+docs/ECOFAIR_CHMARL_EXTERNAL_INTEGRATION.md
 ```
 
 ## Upstream relationship
 
 The upstream Goose project is an attribution and sync source. This CHMARL work is maintained in the fork under `alqithami/goose`.
 
+Do not create upstream pull requests for CHMARL-specific work.
+
 ## Update policy
 
-Make CHMARL changes in `alqithami/goose`.
+Make CHMARL Goose changes in `alqithami/goose`.
 
 Use branches or pull requests inside `alqithami/goose` when review is useful.
 
-For routine project-specific work, direct commits to the fork are acceptable.
+For routine project-specific work, direct commits to this fork are acceptable.
 
 ## Source of truth
 
