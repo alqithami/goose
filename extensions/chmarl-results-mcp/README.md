@@ -1,8 +1,16 @@
 # CHMARL results MCP extension
 
-This is a starter MCP extension for inspecting EcoFair-CH-MARL experiment outputs from Goose.
+This is the original lightweight starter MCP extension for inspecting EcoFair-CH-MARL experiment outputs from Goose.
 
-It is intentionally small and external to Goose core. The CHMARL simulator and training code should remain in the `EcoFairCHAMRL` repository; this extension helps Goose summarize generated result files.
+For new work, prefer the richer CHMARL MCP server at:
+
+```text
+extensions/chmarl-mcp/
+```
+
+That newer server includes experiment discovery, result summarization, comparison, missing-output checks, ablation planning, markdown reporting, and paper-to-code traceability support.
+
+This lightweight extension remains useful as a minimal reference implementation.
 
 ## Expected inputs
 
@@ -56,4 +64,4 @@ Reads CHMARL CSV outputs and returns compact descriptive statistics for numeric 
 - This scaffold summarizes numeric CSV data only.
 - It does not train CHMARL models.
 - It treats available CSV columns literally; if emissions are not stored as a direct column, the assistant should not claim direct emissions analysis.
-- It is a starting point for a richer CHMARL-specific MCP server.
+- Prefer `extensions/chmarl-mcp/` for the main CHMARL Goose integration path.
