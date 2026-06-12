@@ -4,12 +4,12 @@ This is the status handoff for the `alqithami/goose` fork.
 
 ## Purpose
 
-This fork is the Goose-based assistant and workflow layer for CHMARL. The core CHMARL simulator and training code remain in `alqithami/EcoFairCHAMRL`.
+This fork is the Goose-based assistant and workflow layer for CHMARL. EcoFairCHMARL remains a separate external project that Goose can inspect and analyze through local files and result outputs.
 
 ## Key links
 
 - Project site: https://chmarl.com
-- Core code: https://github.com/alqithami/EcoFairCHAMRL
+- External CHMARL code reference: https://github.com/alqithami/EcoFairCHAMRL
 - Upstream Goose: https://github.com/aaif-goose/goose
 - Paper: https://arxiv.org/abs/2603.14625
 
@@ -26,9 +26,10 @@ Policy and operations docs:
 ```text
 FORK_POLICY.md
 docs/REPOSITORY_OPERATIONS.md
+docs/ECOFAIR_CHMARL_EXTERNAL_INTEGRATION.md
 ```
 
-Use this fork for CHMARL Goose updates. Use `alqithami/EcoFairCHAMRL` for core algorithm work.
+Use this fork for CHMARL Goose updates. Treat `alqithami/EcoFairCHAMRL` as an external/read-only integration target unless explicitly instructed otherwise.
 
 ## Added assets
 
@@ -41,8 +42,8 @@ CUSTOM_CHMARL_DISTRIBUTION.md
 CHMARL_STATUS.md
 docs/CHMARL_ROADMAP.md
 docs/CHMARL_WORKFLOWS.md
+docs/ECOFAIR_CHMARL_EXTERNAL_INTEGRATION.md
 docs/PAPER_TO_CODE_TRACEABILITY.md
-docs/NEXT_STEPS_ECOFAIR_CHMARL.md
 docs/REPOSITORY_OPERATIONS.md
 ```
 
@@ -88,18 +89,23 @@ pytest
 
 Keep assistant workflows, MCP tools, documentation, reports, and recipes in this Goose fork.
 
-Keep the MARL environment, training loops, baselines, metrics, tests, and real experiment outputs in `EcoFairCHAMRL`.
+Do not modify EcoFairCHMARL from this Goose integration workflow unless the user explicitly requests changes to that repository.
 
-## Next target
+## Next target inside this fork
 
-The next major engineering effort should move to:
-
-```text
-https://github.com/alqithami/EcoFairCHAMRL
-```
-
-See:
+Continue improving the Goose-side integration layer:
 
 ```text
-docs/NEXT_STEPS_ECOFAIR_CHMARL.md
+extensions/chmarl-mcp/
+recipes/
+docs/
+scripts/chmarl/
 ```
+
+Possible next additions:
+
+- richer markdown experiment reports
+- website-ready result summaries
+- CHMARL paper-review recipes
+- MCP output templates for chmarl.com
+- desktop branding refinements
