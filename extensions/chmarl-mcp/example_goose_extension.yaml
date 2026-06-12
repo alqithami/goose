@@ -1,0 +1,13 @@
+extensions:
+  - type: stdio
+    name: chmarl
+    cmd: python
+    args:
+      - /absolute/path/to/goose/extensions/chmarl-mcp/chmarl_mcp.py
+      - --repo-dir
+      - /absolute/path/to/EcoFairCHAMRL
+      - --results-dir
+      - /absolute/path/to/EcoFairCHAMRL/results
+      - --report-dir
+      - /absolute/path/to/EcoFairCHAMRL/results/reports
+    description: Analyze EcoFair-CH-MARL experiments and repository artifacts.
