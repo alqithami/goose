@@ -37,9 +37,22 @@ research/chmarl-goose/
   METHOD.md
   EVALUATION_PLAN.md
   CLAIM_EVIDENCE_GRAPH.md
+  DEMO.md
   chmarl_goose_runtime.py
   chmarl_goose_artifact.py
+  generate_claim_evidence.py
   examples/sample_fleet.json
+  tests/test_chmarl_goose_runtime.py
+```
+
+Related repository-level assets:
+
+```text
+schemas/chmarl_goose_agent.schema.json
+schemas/chmarl_goose_episode.schema.json
+schemas/chmarl_goose_claim_evidence.schema.json
+templates/chmarl_goose_artifact_review.md
+recipes/chmarl-goose-researcher.yaml
 ```
 
 The runtime is intentionally lightweight. It is not the final learning algorithm. It is an executable scaffold that models the agent roles and decision traces needed for the next research prototype.
@@ -66,24 +79,70 @@ summary metrics
 
 ## Generate claim-evidence artifacts
 
+Primary artifact generator:
+
 ```bash
 python research/chmarl-goose/chmarl_goose_artifact.py \
   --trace reports/chmarl_goose_trace.json \
   --out-dir reports/chmarl_goose_artifact
 ```
 
-Expected outputs:
+Conservative standalone claim-evidence generator:
+
+```bash
+python research/chmarl-goose/generate_claim_evidence.py \
+  --trace reports/chmarl_goose_trace.json \
+  --out-json reports/chmarl_goose_claim_evidence.json \
+  --out-md reports/chmarl_goose_artifact_review.md
+```
+
+Expected outputs include:
 
 ```text
-reports/chmarl_goose_artifact/summary_metrics.json
-reports/chmarl_goose_artifact/claim_evidence_graph.json
-reports/chmarl_goose_artifact/artifact_review.md
+summary_metrics.json
+claim_evidence_graph.json
+artifact_review.md
 ```
 
 This turns a runtime trace into reviewer-facing evidence:
 
 ```text
 claim -> trace evidence -> metric support -> missing evidence -> falsification tests
+```
+
+## Reviewer demo
+
+Use:
+
+```text
+research/chmarl-goose/DEMO.md
+```
+
+The demo walks through:
+
+1. running the scaffold,
+2. producing a trace,
+3. generating claim evidence,
+4. inspecting auditability fields,
+5. interpreting what is supported versus what still needs experiments.
+
+## Tests
+
+Run:
+
+```bash
+python -m pytest research/chmarl-goose/tests
+```
+
+The tests cover:
+
+```text
+PortAgent congestion and capacity
+VesselAgent auditable proposal generation
+EmissionGovernor pressure update
+FairnessGovernor Gini/max-min behavior
+FleetCoordinator decision trace generation
+runtime trace tool-evidence fields
 ```
 
 ## Core components
