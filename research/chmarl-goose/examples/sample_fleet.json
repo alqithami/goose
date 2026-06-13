@@ -1,0 +1,26 @@
+{
+  "description": "Sample CHMARL-Goose fleet configuration for agentic constrained-MARL runtime experiments.",
+  "ports": [
+    {"port_id": "port_0", "capacity": 3},
+    {"port_id": "port_1", "capacity": 2},
+    {"port_id": "port_2", "capacity": 2}
+  ],
+  "vessels": [
+    {"vessel_id": "vessel_0", "current_port": "port_0", "fuel_curve": 0.0004, "max_speed": 12.0},
+    {"vessel_id": "vessel_1", "current_port": "port_1", "fuel_curve": 0.0005, "max_speed": 13.0},
+    {"vessel_id": "vessel_2", "current_port": "port_2", "fuel_curve": 0.0006, "max_speed": 14.0},
+    {"vessel_id": "vessel_3", "current_port": "port_0", "fuel_curve": 0.0007, "max_speed": 15.0},
+    {"vessel_id": "vessel_4", "current_port": "port_1", "fuel_curve": 0.0008, "max_speed": 16.0}
+  ],
+  "distances": {
+    "port_0": {"port_0": 0.0, "port_1": 80.0, "port_2": 120.0},
+    "port_1": {"port_0": 80.0, "port_1": 0.0, "port_2": 70.0},
+    "port_2": {"port_0": 120.0, "port_1": 70.0, "port_2": 0.0}
+  },
+  "governance": {
+    "emission_budget_per_step": 60.0,
+    "emission_learning_rate": 0.02,
+    "target_gini": 0.18,
+    "fairness_learning_rate": 0.4
+  }
+}
