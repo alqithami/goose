@@ -4,6 +4,40 @@ _An agentic research assistant distribution for EcoFair-CH-MARL, maritime logist
 
 This repository is a project-specific fork of Goose. It keeps the Goose desktop app, CLI, API, provider ecosystem, and MCP extension architecture, but reorients the fork toward CHMARL research workflows.
 
+## Research direction
+
+The most novel direction in this fork is now:
+
+```text
+CHMARL-Goose: agentic constrained hierarchical MARL for maritime digital twins.
+```
+
+Instead of merely using Goose to summarize CHMARL outputs, CHMARL-Goose treats:
+
+```text
+vessels as tool-using agents,
+ports as service/capacity agents,
+emission budgets as governance agents,
+fairness objectives as governance agents,
+and MARL as the optimization backbone.
+```
+
+Start with:
+
+```text
+research/chmarl-goose/README.md
+research/chmarl-goose/ARCHITECTURE.md
+research/chmarl-goose/METHOD.md
+research/chmarl-goose/EVALUATION_PLAN.md
+research/chmarl-goose/chmarl_goose_runtime.py
+```
+
+Run the executable scaffold:
+
+```bash
+python research/chmarl-goose/chmarl_goose_runtime.py --steps 5 --out reports/chmarl_goose_trace.json
+```
+
 ## Start here
 
 The current handoff/status document is:
@@ -73,9 +107,18 @@ docs/
   PAPER_TO_CODE_TRACEABILITY.md
   REPOSITORY_OPERATIONS.md
 
+research/
+  chmarl-goose/
+
+schemas/
+  chmarl_goose_agent.schema.json
+  chmarl_goose_episode.schema.json
+  chmarl_goose_claim_evidence.schema.json
+
 recipes/
   chmarl-paper-assistant.yaml
   chmarl-experiment-analyst.yaml
+  chmarl-goose-researcher.yaml
   chmarl-repo-maintainer.yaml
   chmarl-project-planner.yaml
 
@@ -95,8 +138,9 @@ alqithami/EcoFairCHAMRL
   fairness metrics, emission-budget logic, and experiment outputs.
 
 alqithami/goose
-  CHMARL Goose assistant distribution: recipes, MCP tools,
-  experiment analysis, code review, documentation, and workflow automation.
+  CHMARL-Goose research prototype plus assistant distribution: recipes,
+  MCP tools, agentic constrained-MARL scaffolds, experiment analysis,
+  documentation, and workflow automation.
 
 chmarl.com
   Public project site: paper, code, explanations, figures, demos,
@@ -133,6 +177,7 @@ workspace/
 
 ## CHMARL recipes
 
+- `chmarl-goose-researcher.yaml`: develop the agentic constrained-MARL research direction.
 - `chmarl-paper-assistant.yaml`: paper explanation, equations, paper-to-code comparison, reproducibility checks.
 - `chmarl-experiment-analyst.yaml`: CSV summaries, ablation comparisons, result tables, figure captions.
 - `chmarl-repo-maintainer.yaml`: repository review and proposed improvements, without modifying EcoFairCHMARL unless explicitly requested.
@@ -140,13 +185,14 @@ workspace/
 
 ## Next engineering target in this fork
 
-Continue improving the Goose integration layer:
+Continue improving CHMARL-Goose as a research prototype:
 
-- richer CHMARL MCP reports
-- result dashboards or generated markdown summaries
-- recipes for paper-to-code review
-- website/demo text generation for `chmarl.com`
-- custom Goose desktop branding
+- connect the runtime scaffold to `extensions/chmarl-mcp/`,
+- generate claim-evidence graphs from decision traces,
+- add learned policies behind vessel agents,
+- add artifact-review reports for top-tier conference evaluation,
+- generate website-ready result summaries for `chmarl.com`,
+- evaluate against CHMARL baseline outputs.
 
 ## Upstream attribution
 
