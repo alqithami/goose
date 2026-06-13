@@ -36,11 +36,55 @@ research/chmarl-goose/
   ARCHITECTURE.md
   METHOD.md
   EVALUATION_PLAN.md
+  CLAIM_EVIDENCE_GRAPH.md
   chmarl_goose_runtime.py
+  chmarl_goose_artifact.py
   examples/sample_fleet.json
 ```
 
 The runtime is intentionally lightweight. It is not the final learning algorithm. It is an executable scaffold that models the agent roles and decision traces needed for the next research prototype.
+
+## Run the executable scaffold
+
+```bash
+python research/chmarl-goose/chmarl_goose_runtime.py \
+  --steps 5 \
+  --out reports/chmarl_goose_trace.json
+```
+
+The runtime emits a JSON trace containing:
+
+```text
+vessel proposals
+accepted coordinator actions
+emission-governor state
+fairness-governor state
+port snapshots
+vessel snapshots
+summary metrics
+```
+
+## Generate claim-evidence artifacts
+
+```bash
+python research/chmarl-goose/chmarl_goose_artifact.py \
+  --trace reports/chmarl_goose_trace.json \
+  --out-dir reports/chmarl_goose_artifact
+```
+
+Expected outputs:
+
+```text
+reports/chmarl_goose_artifact/summary_metrics.json
+reports/chmarl_goose_artifact/claim_evidence_graph.json
+reports/chmarl_goose_artifact/artifact_review.md
+```
+
+This turns a runtime trace into reviewer-facing evidence:
+
+```text
+claim -> trace evidence -> metric support -> missing evidence -> falsification tests
+```
 
 ## Core components
 
@@ -104,8 +148,8 @@ EcoFairCHMARL remains an external CHMARL simulator and implementation reference.
 
 ## Next implementation milestones
 
-1. Replace heuristic vessel proposals with learned policies.
-2. Add explicit high-level and low-level policy separation.
-3. Connect the runtime to EcoFairCHMARL outputs through `extensions/chmarl-mcp/`.
-4. Add artifact-evaluation tools that map paper claims to decision evidence.
+1. Connect the runtime trace format to `extensions/chmarl-mcp/` tools.
+2. Add learned policies behind vessel proposal generation.
+3. Add explicit high-level and low-level policy separation.
+4. Generate claim-evidence graphs from real CHMARL experiment outputs.
 5. Evaluate CHMARL-Goose against baseline CHMARL settings using return, fairness, fuel/emission proxy, queue delay, and violation counts.
