@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chmarl.com/schemas/chmarl_goose_agent.schema.json",
+  "title": "CHMARL-Goose Agent",
+  "type": "object",
+  "required": ["agent_id", "agent_type", "capabilities"],
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "description": "Unique agent identifier."
+    },
+    "agent_type": {
+      "type": "string",
+      "enum": ["vessel", "port", "emission_governor", "fairness_governor", "fleet_coordinator"],
+      "description": "Role of the agent in the CHMARL-Goose runtime."
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Tools or actions this agent may perform."
+    },
+    "observations": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "State fields visible to the agent."
+    },
+    "decision_policy": {
+      "type": "string",
+      "description": "Policy type, for example heuristic, learned_policy, llm_planner, or hybrid."
+    },
+    "constraints": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Constraints the agent must respect."
+    },
+    "trace_fields": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Fields that must be logged for auditability."
+    }
+  },
+  "additionalProperties": true
+}
