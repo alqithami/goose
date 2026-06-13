@@ -31,14 +31,34 @@ research/chmarl-goose/README.md
 research/chmarl-goose/ARCHITECTURE.md
 research/chmarl-goose/METHOD.md
 research/chmarl-goose/EVALUATION_PLAN.md
+research/chmarl-goose/CLAIM_EVIDENCE_GRAPH.md
+research/chmarl-goose/DEMO.md
 research/chmarl-goose/chmarl_goose_runtime.py
+research/chmarl-goose/chmarl_goose_artifact.py
+research/chmarl-goose/generate_claim_evidence.py
 research/chmarl-goose/examples/sample_fleet.json
+research/chmarl-goose/tests/test_chmarl_goose_runtime.py
 ```
 
 Run the executable scaffold:
 
 ```bash
 python research/chmarl-goose/chmarl_goose_runtime.py --steps 5 --out reports/chmarl_goose_trace.json
+```
+
+Generate claim-evidence artifacts:
+
+```bash
+python research/chmarl-goose/generate_claim_evidence.py \
+  --trace reports/chmarl_goose_trace.json \
+  --out-json reports/chmarl_goose_claim_evidence.json \
+  --out-md reports/chmarl_goose_artifact_review.md
+```
+
+Run runtime tests:
+
+```bash
+python -m pytest research/chmarl-goose/tests
 ```
 
 ## Key links
@@ -96,6 +116,12 @@ schemas/chmarl_goose_episode.schema.json
 schemas/chmarl_goose_claim_evidence.schema.json
 ```
 
+Templates:
+
+```text
+templates/chmarl_goose_artifact_review.md
+```
+
 Recipes:
 
 ```text
@@ -137,9 +163,28 @@ pytest
 
 ## Boundary
 
-Keep assistant workflows, MCP tools, documentation, reports, research prototypes, schemas, and recipes in this Goose fork.
+Keep assistant workflows, MCP tools, documentation, reports, research prototypes, schemas, templates, and recipes in this Goose fork.
 
 Do not modify EcoFairCHMARL from this Goose integration workflow unless the user explicitly requests changes to that repository.
+
+## Current artifact level
+
+The repo now has:
+
+```text
+conceptual method
+architecture
+evaluation plan
+executable runtime scaffold
+sample fleet configuration
+claim-evidence schemas
+claim-evidence generation
+runtime tests
+reviewer demo
+artifact-review template
+```
+
+It is still not a completed learned MARL method. The next research step is to compare the scaffold and future learned variant against baseline CHMARL outputs.
 
 ## Next target inside this fork
 
@@ -156,7 +201,7 @@ scripts/chmarl/
 Possible next additions:
 
 - connect the runtime scaffold to the MCP server,
-- generate claim-evidence graphs from traces,
+- generate claim-evidence graphs from real CHMARL experiment outputs,
 - add learned policies behind vessel agents,
 - produce reviewer-ready artifact reports,
 - generate website-ready result summaries,
