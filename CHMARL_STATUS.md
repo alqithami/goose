@@ -4,7 +4,42 @@ This is the status handoff for the `alqithami/goose` fork.
 
 ## Purpose
 
-This fork is the Goose-based assistant and workflow layer for CHMARL. EcoFairCHMARL remains a separate external project that Goose can inspect and analyze through local files and result outputs.
+This fork is now the Goose-based assistant, workflow, and research-prototype layer for CHMARL. EcoFairCHMARL remains a separate external project that Goose can inspect and analyze through local files and result outputs.
+
+## Current research direction
+
+The primary research direction is now:
+
+```text
+CHMARL-Goose: agentic constrained hierarchical MARL for maritime digital twins.
+```
+
+This direction treats:
+
+```text
+vessels as tool-using agents,
+ports as service/capacity agents,
+emission budgets as governance agents,
+fairness objectives as governance agents,
+MARL as the optimization backbone.
+```
+
+Research files:
+
+```text
+research/chmarl-goose/README.md
+research/chmarl-goose/ARCHITECTURE.md
+research/chmarl-goose/METHOD.md
+research/chmarl-goose/EVALUATION_PLAN.md
+research/chmarl-goose/chmarl_goose_runtime.py
+research/chmarl-goose/examples/sample_fleet.json
+```
+
+Run the executable scaffold:
+
+```bash
+python research/chmarl-goose/chmarl_goose_runtime.py --steps 5 --out reports/chmarl_goose_trace.json
+```
 
 ## Key links
 
@@ -47,9 +82,24 @@ docs/PAPER_TO_CODE_TRACEABILITY.md
 docs/REPOSITORY_OPERATIONS.md
 ```
 
+Research prototype:
+
+```text
+research/chmarl-goose/
+```
+
+Schemas:
+
+```text
+schemas/chmarl_goose_agent.schema.json
+schemas/chmarl_goose_episode.schema.json
+schemas/chmarl_goose_claim_evidence.schema.json
+```
+
 Recipes:
 
 ```text
+recipes/chmarl-goose-researcher.yaml
 recipes/chmarl-paper-assistant.yaml
 recipes/chmarl-experiment-analyst.yaml
 recipes/chmarl-repo-maintainer.yaml
@@ -87,15 +137,16 @@ pytest
 
 ## Boundary
 
-Keep assistant workflows, MCP tools, documentation, reports, and recipes in this Goose fork.
+Keep assistant workflows, MCP tools, documentation, reports, research prototypes, schemas, and recipes in this Goose fork.
 
 Do not modify EcoFairCHMARL from this Goose integration workflow unless the user explicitly requests changes to that repository.
 
 ## Next target inside this fork
 
-Continue improving the Goose-side integration layer:
+Continue improving CHMARL-Goose as a research prototype:
 
 ```text
+research/chmarl-goose/
 extensions/chmarl-mcp/
 recipes/
 docs/
@@ -104,8 +155,9 @@ scripts/chmarl/
 
 Possible next additions:
 
-- richer markdown experiment reports
-- website-ready result summaries
-- CHMARL paper-review recipes
-- MCP output templates for chmarl.com
-- desktop branding refinements
+- connect the runtime scaffold to the MCP server,
+- generate claim-evidence graphs from traces,
+- add learned policies behind vessel agents,
+- produce reviewer-ready artifact reports,
+- generate website-ready result summaries,
+- evaluate CHMARL-Goose against baseline CHMARL outputs.
