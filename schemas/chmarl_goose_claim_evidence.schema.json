@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chmarl.com/schemas/chmarl_goose_claim_evidence.schema.json",
+  "title": "CHMARL-Goose Claim Evidence",
+  "type": "object",
+  "required": ["claim_id", "claim", "status", "evidence"],
+  "properties": {
+    "claim_id": {
+      "type": "string"
+    },
+    "claim": {
+      "type": "string"
+    },
+    "claim_type": {
+      "type": "string",
+      "enum": ["optimization", "fairness", "emission", "scalability", "governance", "interpretability", "reproducibility", "baseline"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["supported", "partially_supported", "unsupported", "overclaimed", "needs_verification"]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "description"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": ["code", "metric", "trace", "experiment", "schema", "document", "manual_review"]
+          },
+          "description": {"type": "string"},
+          "path": {"type": "string"},
+          "metric": {"type": "string"},
+          "value": {},
+          "caveat": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "missing_evidence": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "falsification_tests": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "reviewer_note": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}
